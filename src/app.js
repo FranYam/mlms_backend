@@ -26,12 +26,29 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
 app.get('/api-docs.json', (req, res) => res.json(swaggerSpec));
 
 // Routes
-app.use('/api/auth',       require('./modules/auth/auth.routes'));
-app.use('/api/users',      require('./modules/users/users.routes'));
-app.use('/api/clients',    require('./modules/clients/clients.routes'));
-app.use('/api/loans',      require('./modules/loans/loans.routes'));
-app.use('/api/repayments', require('./modules/repayments/repayments.routes'));
-app.use('/api/dashboard',  require('./modules/dashboard/dashboard.routes'));
+// Load route modules
+const authRoutes       = require('./modules/auth/auth.routes');
+const usersRoutes      = require('./modules/users/users.routes');
+const clientsRoutes    = require('./modules/clients/clients.routes');
+const loansRoutes      = require('./modules/loans/loans.routes');
+const repaymentsRoutes = require('./modules/repayments/repayments.routes');
+const dashboardRoutes  = require('./modules/dashboard/dashboard.routes');
+
+// Routes avec préfixe /api (Standard)
+app.use('/api/auth',       authRoutes);
+app.use('/api/users',      usersRoutes);
+app.use('/api/clients',    clientsRoutes);
+app.use('/api/loans',      loansRoutes);
+app.use('/api/repayments', repaymentsRoutes);
+app.use('/api/dashboard',  dashboardRoutes);
+
+// Routes sans préfixe (pour plus de flexibilité lors du déploiement)
+app.use('/auth',       authRoutes);
+app.use('/users',      usersRoutes);
+app.use('/clients',    clientsRoutes);
+app.use('/loans',      loansRoutes);
+app.use('/repayments', repaymentsRoutes);
+app.use('/dashboard',  dashboardRoutes);
 
 app.get('/', (req, res) => res.json({
   success: true,
