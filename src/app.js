@@ -6,8 +6,12 @@ const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 const { errorResponse } = require('./utils/response');
+const connectDB = require('./config/database');
 
 const app = express();
+
+// Initialize DB
+connectDB();
 
 app.use(cors());
 app.use(express.json());

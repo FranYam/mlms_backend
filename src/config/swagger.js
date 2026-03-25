@@ -28,12 +28,12 @@ const options = {
         email: 'support@mlms.com',
       },
     },
-    servers: [
+    /* servers: [
       {
         url: 'http://localhost:3000/api',
         description: 'Serveur de développement',
       },
-    ],
+    ], */
     components: {
       securitySchemes: {
         bearerAuth: {
