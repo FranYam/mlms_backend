@@ -37,6 +37,7 @@ const userSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Client',
       default: null,
+      set: v => v === "" ? null : v
     },
   },
   { timestamps: true }

@@ -13,6 +13,7 @@ const repaymentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'RepaymentSchedule',
       default: null,
+      set: v => v === "" ? null : v
     },
     amount: {
       type: Number,
